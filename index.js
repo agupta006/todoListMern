@@ -1,13 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const todoRoutes = require('./routes/todoRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
-mongoose.connect('mongodb://localhost:27017/todoapp', {
+mongoose.connect('mongodb://127.0.0.1:27017/todoapp', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -18,7 +18,7 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
 app.use('/api/todos', todoRoutes);
 
